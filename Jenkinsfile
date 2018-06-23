@@ -4,6 +4,7 @@ node {
   stage('Package') {
     dir('webapp') {
       sh 'mvn clean package -DskipTests'
+	   echo "stage1"
     }
   }
 
