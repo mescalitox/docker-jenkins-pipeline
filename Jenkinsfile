@@ -11,7 +11,9 @@ node {
 
   stage('Create Docker Image') {
     dir('webapp') {
+		echo "DI 1"
       docker.build("arungupta/docker-jenkins-pipeline:${env.BUILD_NUMBER}")
+	  echo "DI 2"
     }
   }
 
@@ -22,7 +24,7 @@ node {
 
       // Run application using Docker image
 	  echo "stage RA1"
-      bat "DB=`docker inspect --format='{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' db`"
+      bat "SET DB=`docker inspect --format='{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' db`"
 	  echo "stage RA2"
       bat "docker run -e DB_URI=$DB arungupta/docker-jenkins-pipeline:${env.BUILD_NUMBER}"
 
