@@ -3,6 +3,7 @@ node {
   env.PATH = "${tool 'Maven3'}/bin:${env.PATH}"
   stage('Package') {
     dir('webapp') {
+		sh 'dir'
       sh 'mvn clean package -DskipTests'
 	   echo "stage1"
     }
